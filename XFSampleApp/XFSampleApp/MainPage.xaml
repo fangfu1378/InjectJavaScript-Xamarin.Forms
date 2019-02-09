@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:XFSampleApp"
-             x:Class="XFSampleApp.MainPage">
+<ContentPage
+    x:Class="XFSampleApp.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XFSampleApp">
 
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <!--  Place new controls here  -->
+        <WebView
+            HorizontalOptions="FillAndExpand"
+            Source="https://xamarinclassdemo.azurewebsites.net/injectjavascript/hello"
+            VerticalOptions="FillAndExpand" />
+        <Button Clicked="RefreshButton_Clicked" Text="Refresh WebPage" />
     </StackLayout>
 
 </ContentPage>

@@ -13,5 +13,15 @@ namespace XFSampleApp
         {
             InitializeComponent();
         }
+
+        private void RefreshButton_Clicked(object sender, EventArgs e)
+        {
+            View childrenFirstViewControl = (Content as StackLayout).Children[0];
+            if(childrenFirstViewControl is WebView)
+            {
+                var webView = childrenFirstViewControl as WebView;
+                webView.Reload();
+            }
+        }
     }
 }

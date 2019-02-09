@@ -5,3 +5,5 @@
 /.vs
 /XFSampleApp/XFSampleApp.Android/obj
 /XFSampleApp/XFSampleApp.iOS/obj
+/XFSampleApp/.vs/XFSampleApp/v15
+/XFSampleApp/XFSampleApp/obj
