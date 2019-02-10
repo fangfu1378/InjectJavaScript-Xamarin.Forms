@@ -34,5 +34,7 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>CFBundleIdentifier</key>
 	<string>demo.injectjavascript.XFSampleApp</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need take picture, so please allow us to use your camera</string>
 </dict>
 </plist>

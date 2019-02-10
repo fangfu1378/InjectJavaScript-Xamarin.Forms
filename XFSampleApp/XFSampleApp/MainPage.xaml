@@ -3,13 +3,16 @@
     x:Class="XFSampleApp.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:XFSampleApp">
+    xmlns:customerenderers="clr-namespace:XFSampleApp.CustomeRenderers"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:XFSampleApp"
+    ios:Page.UseSafeArea="true">
 
     <StackLayout>
         <!--  Place new controls here  -->
-        <WebView
+        <customerenderers:CustomWebView
             HorizontalOptions="FillAndExpand"
-            Source="https://xamarinclassdemo.azurewebsites.net/injectjavascript/hello"
+            Uri="https://xamarinclassdemo.azurewebsites.net/injectjavascript/hello"
             VerticalOptions="FillAndExpand" />
         <Button Clicked="RefreshButton_Clicked" Text="Refresh WebPage" />
     </StackLayout>
