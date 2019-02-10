@@ -40,6 +40,21 @@ namespace XFSampleApp
                 MediaFile mediaFile = isCrossMediaInitalized ? await TakePictureAsync() : null;
 
                 //Please insert handling code for your media file...
+                //Start
+                //
+                //
+                //End
+
+                if(mediaFile != null)
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        _customWebView.EvalJavaScript($"javascript: logSuccess();");
+
+                        var writeMessageStr = $"This picture store path is: {mediaFile.Path}";
+                        _customWebView.EvalJavaScript($"javascript: log('{writeMessageStr}');");
+                    });
+                }
             });
         }
 
@@ -58,7 +73,8 @@ namespace XFSampleApp
             }
             else
             {
-                await DisplayAlert("Error", "This device doesn't support TakePicture feature...", "OK");
+                //Note: iOS Simulator can't use the feature of Camera.
+                await DisplayAlert("Error", "This device doesn't support this feature...", "OK");
                 return null;
             }
         }

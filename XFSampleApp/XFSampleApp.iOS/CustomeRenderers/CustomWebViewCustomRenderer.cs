@@ -9,14 +9,15 @@ using WebKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using XFSampleApp.CustomeRenderers;
+using XFSampleApp.Helpers;
 using XFSampleApp.iOS.CustomeRenderers;
 
 [assembly: ExportRenderer(typeof(CustomWebView), typeof(CustomWebViewCustomRenderer))]
 namespace XFSampleApp.iOS.CustomeRenderers
 {
-    public class CustomWebViewCustomRenderer : ViewRenderer<CustomWebView, WKWebView>, IWKScriptMessageHandler
+    public class CustomWebViewCustomRenderer : ViewRenderer<CustomWebView, WKWebView>, IWKScriptMessageHandler, IEvalJs
     {
-        const string JavaScriptFunction = "function invokeCSharpAction(){window.webkit.messageHandlers.invokeAction.postMessage();}";
+        const string JavaScriptFunction = "function invokeCSharpAction(data){window.webkit.messageHandlers.invokeAction.postMessage(data);}";
 
         WKUserContentController userController;
 
@@ -55,6 +56,11 @@ namespace XFSampleApp.iOS.CustomeRenderers
         public void DidReceiveScriptMessage(WKUserContentController userContentController, WKScriptMessage message)
         {
             Element.InvokeAction(message.Body.ToString());
+        }
+
+        public void ExecuteJavaScript(string scriptStr)
+        {
+            Control?.EvaluateJavaScript(new NSString(scriptStr), null);
         }
     }
 }

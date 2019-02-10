@@ -16,12 +16,13 @@ using Xamarin.Forms.Platform.Android;
 using XFSampleApp.CustomeRenderers;
 using XFSampleApp.Droid.CustomeRenderers;
 using XFSampleApp.Droid.CustomeRenderers.Helpers;
+using XFSampleApp.Helpers;
 
 [assembly: ExportRenderer(typeof(CustomWebView), typeof(CustomWebViewCustomRenderer))]
 namespace XFSampleApp.Droid.CustomeRenderers
 {
 
-    public class CustomWebViewCustomRenderer : ViewRenderer<CustomWebView, Android.Webkit.WebView> //, IEvalJs
+    public class CustomWebViewCustomRenderer : ViewRenderer<CustomWebView, Android.Webkit.WebView>, IEvalJs
     {
         const string JavascriptFunction = "function invokeCSharpAction(data){jsBridge.invokeAction(data);}";
 
@@ -53,9 +54,15 @@ namespace XFSampleApp.Droid.CustomeRenderers
 
             if (e.NewElement != null)
             {
+                e.NewElement.EvalJsInstance = this;
                 Control.AddJavascriptInterface(new JSBridge(this), "jsBridge");
                 Control.LoadUrl($"{e.NewElement.Uri}");
             }
+        }
+
+        public void ExecuteJavaScript(string scriptStr)
+        {
+            Control?.EvaluateJavascript(scriptStr, null);
         }
     }
 }

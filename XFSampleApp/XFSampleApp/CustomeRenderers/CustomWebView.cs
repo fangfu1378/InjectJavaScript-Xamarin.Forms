@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using XFSampleApp.Helpers;
 
 namespace XFSampleApp.CustomeRenderers
 {
@@ -34,6 +35,13 @@ namespace XFSampleApp.CustomeRenderers
         public void InvokeAction(string data)
         {
              action?.Invoke(data);
+        }
+
+        public IEvalJs EvalJsInstance { get; set; }
+
+        public void EvalJavaScript(string script)
+        {
+            EvalJsInstance?.ExecuteJavaScript(script);
         }
     }
 }
